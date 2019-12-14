@@ -1,10 +1,10 @@
 
 inline unsigned char get_pix(__global unsigned char* image, int width, int height, int y, int x) {
-	if (x < 0 || x >= width)
-		return 0;
-	if (y < 0 || y >= height)
-		return 0;
-	return image[y*width + x];
+    if (x < 0 || x >= width)
+        return 0;
+    if (y < 0 || y >= height)
+        return 0;
+    return image[y*width + x];
 }
 
 __kernel void sobel(__global unsigned char* imageIn, __global unsigned char* imageOut,
@@ -73,7 +73,7 @@ __kernel void sobel(__global unsigned char* imageIn, __global unsigned char* ima
     if (skip_WI == 1)
         return;
 
-	int Gx, Gy;
+    int Gx, Gy;
 
     Gx = -1 * l_pixels[li][lj] - 2 * l_pixels[li][lj+1] - 1 * l_pixels[li][lj+2] + 
           1 * l_pixels[li+2][lj] + 2 * l_pixels[li+2][lj+1] +  1 * l_pixels[li+2][lj+2];

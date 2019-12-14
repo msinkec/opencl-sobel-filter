@@ -42,22 +42,22 @@ void printKernelBuildLog(cl_program program, cl_device_id device_id)  {
 
 int main(void)
 {
-	unsigned char *slikaInput;
-	unsigned char *slikaOutput;
+    unsigned char *slikaInput;
+    unsigned char *slikaOutput;
 
-	FIBITMAP *imageBitmap = FreeImage_Load(FIF_PNG, "lenna.png", 0);
-	FIBITMAP *imageBitmapGrey = FreeImage_ConvertToGreyscale(imageBitmap);
+    FIBITMAP *imageBitmap = FreeImage_Load(FIF_PNG, "lenna.png", 0);
+    FIBITMAP *imageBitmapGrey = FreeImage_ConvertToGreyscale(imageBitmap);
 
-	int width = FreeImage_GetWidth(imageBitmapGrey);
-	int height = FreeImage_GetHeight(imageBitmapGrey);
+    int width = FreeImage_GetWidth(imageBitmapGrey);
+    int height = FreeImage_GetHeight(imageBitmapGrey);
 
-	unsigned char *imageIn = (unsigned char*)malloc(height*width * sizeof(unsigned char));
-	unsigned char *imageOut = (unsigned char*)malloc(height*width * sizeof(unsigned char));
+    unsigned char *imageIn = (unsigned char*)malloc(height*width * sizeof(unsigned char));
+    unsigned char *imageOut = (unsigned char*)malloc(height*width * sizeof(unsigned char));
 
-	FreeImage_ConvertToRawBits(imageIn, imageBitmapGrey, width, 8, 0xFF, 0xFF, 0xFF, TRUE);
+    FreeImage_ConvertToRawBits(imageIn, imageBitmapGrey, width, 8, 0xFF, 0xFF, 0xFF, TRUE);
 
-	FreeImage_Unload(imageBitmapGrey);
-	FreeImage_Unload(imageBitmap);
+    FreeImage_Unload(imageBitmapGrey);
+    FreeImage_Unload(imageBitmap);
 
 
 
@@ -146,13 +146,13 @@ int main(void)
                                 atom_buffer_size, imageOut, 0, NULL, NULL);
    
     // Save image to file
-	FIBITMAP *imageOutBitmap = FreeImage_ConvertFromRawBits(imageOut, width, height, width, 8, 0xFF, 0xFF, 0xFF, TRUE);
-	FreeImage_Save(FIF_PNG, imageOutBitmap, "result.png", 0);
+    FIBITMAP *imageOutBitmap = FreeImage_ConvertFromRawBits(imageOut, width, height, width, 8, 0xFF, 0xFF, 0xFF, TRUE);
+    FreeImage_Save(FIF_PNG, imageOutBitmap, "result.png", 0);
 
 
 
     //////////////// CLEANUP /////////////////
-	FreeImage_Unload(imageOutBitmap);
+    FreeImage_Unload(imageOutBitmap);
     ret = clFlush(command_queue);
     ret = clFinish(command_queue);
     ret = clReleaseKernel(kernel);
@@ -167,6 +167,6 @@ int main(void)
     free(imageIn);
     free(imageOut);
 
-	return 0;
+    return 0;
 }
 

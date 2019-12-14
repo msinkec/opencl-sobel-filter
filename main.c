@@ -152,7 +152,7 @@ int main(void)
 
 
     //////////////// CLEANUP /////////////////
-	/*FreeImage_Unload(imageOutBitmap);
+	FreeImage_Unload(imageOutBitmap);
     ret = clFlush(command_queue);
     ret = clFinish(command_queue);
     ret = clReleaseKernel(kernel);
@@ -165,7 +165,7 @@ int main(void)
     free(global_work_size);
     free(local_work_size);
     free(imageIn);
-    free(imageOut);*/
+    free(imageOut);
 
 	return 0;
 }
